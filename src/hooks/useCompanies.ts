@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useGetCompaniesQuery } from '../services/companiesApi';
 
 export const useCompanies = () => {
@@ -31,8 +31,22 @@ export const useCompanies = () => {
     currentPage * itemsPerPage
   );
 
+  useEffect(() => {
+  if (currentPage > totalPages) setCurrentPage(1);
+}, [totalPages]);
+
+
   const locations = Array.from(new Set(companies?.map((c) => c.location) || []));
   const industries = Array.from(new Set(companies?.map((c) => c.industry) || []));
+
+  const resetFilters = () => {
+  setSearch('');
+  setSelectedLocation('');
+  setSelectedIndustry('');
+  setSortOrder('asc');
+  setCurrentPage(1);
+};
+
 
   return {
     companies: paginatedCompanies,
@@ -51,5 +65,6 @@ export const useCompanies = () => {
     totalPages,
     locations,
     industries,
+    resetFilters
   };
 };

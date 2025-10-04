@@ -20,6 +20,7 @@ const CompaniesList: React.FC = () => {
     totalPages,
     locations,
     industries,
+    resetFilters,
   } = useCompanies();
 
   if (isLoading) return <p className="text-center mt-10">Loading...</p>;
@@ -67,11 +68,7 @@ const CompaniesList: React.FC = () => {
           <p className="text-gray-500 text-lg mb-4">No companies found.</p>
           <button
             onClick={() => {
-              setSearch('');
-              setSelectedLocation('');
-              setSelectedIndustry('');
-              setSortOrder('asc');
-              setCurrentPage(1);
+            resetFilters();
             }}
             className="bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
           >
