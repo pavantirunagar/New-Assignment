@@ -10,7 +10,6 @@ export const useCompanies = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  // Filtered + Sorted companies
   const filteredCompanies = useMemo(() => {
     return companies
       ?.filter((company) => {
@@ -25,7 +24,6 @@ export const useCompanies = () => {
       });
   }, [companies, search, selectedLocation, selectedIndustry, sortOrder]);
 
-  // Pagination
   const totalItems = filteredCompanies?.length || 0;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const paginatedCompanies = filteredCompanies?.slice(
@@ -33,7 +31,6 @@ export const useCompanies = () => {
     currentPage * itemsPerPage
   );
 
-  // Extract unique locations and industries
   const locations = Array.from(new Set(companies?.map((c) => c.location) || []));
   const industries = Array.from(new Set(companies?.map((c) => c.industry) || []));
 

@@ -29,7 +29,6 @@ const Filters: React.FC<FiltersProps> = ({
 }) => {
   return (
     <div className="mb-5 flex flex-col md:flex-row gap-4">
-      {/* Search */}
       <input
         type="text"
         placeholder="Search by company name..."
@@ -41,7 +40,6 @@ const Filters: React.FC<FiltersProps> = ({
         className="border p-2 sm:p-3 rounded w-full md:w-1/4"
       />
 
-      {/* Location Dropdown */}
       <select
         value={selectedLocation}
         onChange={(e) => {
@@ -56,7 +54,6 @@ const Filters: React.FC<FiltersProps> = ({
         ))}
       </select>
 
-      {/* Industry Dropdown */}
       <select
         value={selectedIndustry}
         onChange={(e) => {
@@ -71,7 +68,6 @@ const Filters: React.FC<FiltersProps> = ({
         ))}
       </select>
 
-      {/* Sort Dropdown */}
       <select
         value={sortOrder}
         onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}

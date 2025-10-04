@@ -27,7 +27,6 @@ const CompaniesList: React.FC = () => {
 
   return (
     <div className="p-5">
-      {/* Filters */}
       <Filters
         search={search}
         setSearch={setSearch}
@@ -42,7 +41,6 @@ const CompaniesList: React.FC = () => {
         setCurrentPage={setCurrentPage}
       />
 
-      {/* Companies Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {companies?.map((company) => (
           <div
@@ -64,13 +62,27 @@ const CompaniesList: React.FC = () => {
         ))}
       </div>
 
-      {/* No results */}
       {companies?.length === 0 && (
-        <p className="text-center mt-10 text-gray-500">No companies found.</p>
+           <div className="flex flex-col items-center justify-center mt-20 text-center">
+          <p className="text-gray-500 text-lg mb-4">No companies found.</p>
+          <button
+            onClick={() => {
+              setSearch('');
+              setSelectedLocation('');
+              setSelectedIndustry('');
+              setSortOrder('asc');
+              setCurrentPage(1);
+            }}
+            className="bg-blue-600 text-white px-5 py-2 rounded-md shadow hover:bg-blue-700 transition"
+          >
+            Back to Home
+          </button>
+        </div>
       )}
 
-      {/* Pagination Controls */}
-      <div className="flex flex-wrap justify-center mt-5 gap-2">
+     {
+        companies?.length !== 0 && (
+             <div className="flex flex-wrap justify-center mt-5 gap-2">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
@@ -98,7 +110,9 @@ const CompaniesList: React.FC = () => {
         >
           Next  
         </button>
-      </div>
+      </div> 
+        )
+     }
     </div>
   );
 };
