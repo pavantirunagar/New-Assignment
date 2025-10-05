@@ -5,17 +5,18 @@ export interface Company {
   name: string;
   industry: string;
   location: string;
-  size: string;
+  size?: string;
   website: string;
   description: string;
 }
 
 export const companiesApi = createApi({
   reducerPath: 'companiesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4000/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/' }),
   endpoints: (builder) => ({
     getCompanies: builder.query<Company[], void>({
-      query: () => 'companies',
+      query: () => 'db.json',
+      transformResponse: (response: { companies: Company[] }) => response.companies,
     }),
   }),
 });
